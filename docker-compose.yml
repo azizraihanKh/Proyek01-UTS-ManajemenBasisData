@@ -1,0 +1,37 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres_raihankhoirulaziz
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "22006:5432"
+    volumes:
+      - postgres_uts_data:/var/lib/postgresql/data
+    networks:
+      - uts_network
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin_raihankhoirulaziz
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "44006:80"
+    volumes:
+      - pgadmin_uts_data:/var/lib/pgadmin
+    depends_on:
+      - postgres
+    networks:
+      - uts_network
+
+
+volumes:
+  postgres_uts_data:
+  pgadmin_uts_data:
+
+networks:
+  uts_network:
+    driver: bridge

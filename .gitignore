@@ -1,0 +1,8 @@
+# File konfigurasi yang berisi kredensial
+.env
+
+# File log
+*.log
+
+# Konfigurasi editor VS Code
+.vscode/
